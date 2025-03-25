@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Natal Astro - Discover Your Destiny{% endblock %}
+
+{% block head %}
+<!-- Page-specific meta tags -->
+<meta name="description"
+  content="Discover your cosmic blueprint and unlock the secrets written in the stars at the moment of your birth.">
+{% endblock %}
+
+{% block content %}
+<div class="fade-in relative">
+  <!-- Header Section -->
+  <header class="text-center mb-12">
+    <h1
+      class="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-300 to-indigo-400">
+      Natal Astro
+    </h1>
+    <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
+      Discover your cosmic blueprint and unlock the secrets written in the stars at the moment of your birth.
+    </p>
+  </header>
+
+  <!-- Form Container -->
+  <div class="max-w-4xl mx-auto relative">
+    <!-- Star background overlay -->
+    <div class="absolute inset-0 z-0 opacity-100"
+      style="background: url('/static/images/stars-bg.svg') center/cover no-repeat;"></div>
+
+    <!-- Form Card -->
+    <div class="relative z-10 bg-transparent rounded-2xl border border-slate-800 shadow-xl p-6 md:p-8">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-center">
+        Your Personalized Birth Chart
+      </h2>
+      <p class="text-slate-300 mb-8 text-center">
+        Enter your birth details below to receive your complete astrological profile.
+      </p>
+
+      <!-- Birth Chart Form -->
+      <form action="/submit" method="post" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Personal Information -->
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">Full Name</label>
+            <input type="text" name="fullName" placeholder="Enter your full name"
+              class="bg-slate-800/50 border-slate-700 p-3 rounded-lg" required>
+          </div>
+
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">Email</label>
+            <input type="email" name="email" placeholder="your.email@example.com"
+              class="bg-slate-800/50 border-slate-700 p-3 rounded-lg" required>
+          </div>
+
+          <!-- Birth Date/Time -->
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">Date of Birth</label>
+            <input type="date" name="dateOfBirth" class="bg-slate-800/50 border-slate-700 p-3 rounded-lg" required>
+          </div>
+
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">Time of Birth</label>
+            <input type="time" name="timeOfBirth" class="bg-slate-800/50 border-slate-700 p-3 rounded-lg" required>
+          </div>
+
+          <!-- Location Dropdowns -->
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">Country</label>
+            <select id="country" name="country" class="bg-slate-800/50 border-slate-700 p-3 rounded-lg"
+              required></select>
+          </div>
+
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">State</label>
+            <select id="state" name="state" class="bg-slate-800/50 border-slate-700 p-3 rounded-lg" required
+              disabled></select>
+          </div>
+
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">City</label>
+            <select id="city" name="city" class="bg-slate-800/50 border-slate-700 p-3 rounded-lg" required
+              disabled></select>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="flex flex-col">
+            <label class="mb-1 font-semibold">Mobile Number</label>
+            <input type="tel" name="mobileNumber" placeholder="Enter your mobile number"
+              class="bg-slate-800/50 border-slate-700 p-3 rounded-lg" required>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button type="submit"
+            class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-6 rounded-lg transition-colors duration-300">
+            Generate My Birth Chart Analysis
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Initialize location dropdowns -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    new LocationFormHandler();
+  });
+</script>
+{% endblock %}

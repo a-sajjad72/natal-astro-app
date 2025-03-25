@@ -1,0 +1,36 @@
+<!-- backend/templates/report.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Astrological Report - {{ name }}{% endblock %}
+
+{% block content %}
+<div class="fade-in relative">
+    <div class="max-w-4xl mx-auto bg-slate-800/70 p-8 rounded-lg">
+        <h1 class="text-3xl mb-4">{{ name }}'s Astrological Report</h1>
+
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Lagna -->
+            <div class="bg-slate-700/50 p-4 rounded-lg">
+                <h3 class="text-xl mb-2">Ascendant (Lagna)</h3>
+                <p class="text-2xl">{{ "%.2f"|format(results.lagna) }}°</p>
+            </div>
+
+            <!-- Planets -->
+            {% for planet, degree in results.planets.items() %}
+            <div class="bg-slate-700/50 p-4 rounded-lg">
+                <h3 class="text-xl mb-2">{{ planet }}</h3>
+                <p class="text-2xl">{{ "%.2f"|format(degree) }}°</p>
+                <p class="text-sm">Speed: {{ "%.2f"|format(results.speeds[planet]) }}/day</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Add more sections for Panchang and other elements -->
+
+        <div class="mt-8">
+            <a href="/" class="btn-primary">Generate Another Chart</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Natal Astro{% endblock %}</title>
+
+  <!-- Tailwind CDN (or link to compiled CSS) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Static CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+
+  <!-- Block for page-specific head content -->
+  {% block head %}{% endblock %}
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-slate-900 to-indigo-950 text-white">
+  <!-- Navbar Partial -->
+  {% include "partials/navbar.html" %}
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-12 md:py-24">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer Partial -->
+  {% include "partials/footer.html" %}
+
+  <!-- Static JS -->
+  <script src="{{ url_for('static', path='/js/form.js') }}"></script>
+
+  <!-- Page-specific JS -->
+  {% block scripts %}{% endblock %}
+</body>
+
+</html>

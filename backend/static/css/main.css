@@ -1,0 +1,34 @@
+/* Celestial background */
+.celestial-bg {
+  background: url("../images/stars-bg.svg") center/cover no-repeat;
+  opacity: 1;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Highlight invalid fields */
+select[aria-invalid="true"] {
+  border-color: #ef4444; /* Red border */
+  background-color: #fef2f2; /* Light red background */
+}
+
+/* Error message styling */
+#error-container {
+  background-color: #dc2626; /* Red background */
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
