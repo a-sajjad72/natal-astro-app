@@ -10,6 +10,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from backend.gsheets.natal import fetch_output_data, update_input_sheet
+from backend.gsheets.userdata import update_userdata_sheet
 from backend.routes.locations import get_coordinates
 from backend.services.astrology_service import AstrologyService
 
@@ -42,17 +43,34 @@ async def submit_form(
         "timezone_offset": 5.5,
     }
 
+    # Update Userdata sheet
+    update_userdata_sheet(
+        request.app.state.gsheet_service,
+        {
+            "Name": fullName,
+            "Email": email,
+            "Date of Birth": dateOfBirth,
+            "Time of Birth": timeOfBirth,
+            "Country": country,
+            "State": state,
+            "City": city,
+            "Mobile Number": mobileNumber,
+        },
+    )
+
     service = AstrologyService(birth_data)
     result_csv = service.generate_csv()
 
     result_csv = service.generate_csv()
     csv_rows = list(csv.reader(StringIO(result_csv.strip())))
 
+    # Insert data Input sheet
     update_input_sheet(request.app.state.gsheet_service, csv_rows[1:])
 
+    # Fetch output data from Output sheet
     output_data = fetch_output_data(request.app.state.gsheet_service)
-    output_data = pd.DataFrame(output_data).map(lambda x: '' if x is None else x)
-    print()
+    output_data = pd.DataFrame(output_data).map(lambda x: "" if x is None else x)
+    print(output_data)
 
     return f"""
         <html>
@@ -62,3 +80,6 @@ async def submit_form(
           </body>
         </html>
         """
+
+
+"fullName", "email", "dateOfBirth", "timeOfBirth", "country", "state", "city", "mobileNumber"
