@@ -255,7 +255,7 @@ class AstrologyService:
                     results["sunrise_sunset"]["sunrise"],
                     results["sunrise_sunset"]["sunset"],
                     *results["panchang"].values(),
-                    f"{results["lagna"]:.2f}",
+                    f"{results['lagna']:.2f}",
                     *results["planet_positions"].values(),
                     *results["planet_speeds"].values(),
                     *results["sensitive_points"].values(),
