@@ -6,29 +6,64 @@ This project is a web application built using FastAPI for the backend and Jinja2
 
 ```
 my-fastapi-web-app
-├── backend
-│   ├── main.py               # Entry point of the FastAPI application
-│   ├── routes
-│   │   └── home.py           # Contains the HomeRouter class for handling routes
-│   ├── templates
-│   │   └── base_template.py   # Renders Jinja2 templates
-│   └── styles
-│       └── tailwind_classes.py # Contains Tailwind UI and ShadCN classes
-├── tests
-│   └── test_main.py          # Unit tests for the application
-├── requirements.txt           # Project dependencies
-└── README.md                  # Project documentation
+C:.
+│   .env
+│   .gitignore
+│   config.py
+│   main.py
+│   README.md
+│   requirements.txt
+│
+├───backend
+│   ├───gsheets
+│   │       locations.py
+│   │       natal.py
+│   │       utils.py
+│   │
+│   ├───routes
+│   │       home.py
+│   │       locations.py
+│   │       submit.py
+│   │
+│   ├───services
+│   │       astrology_constants.py
+│   │       astrology_service.py
+│   │
+│   ├───static
+│   │   ├───css
+│   │   │       main.css
+│   │   │
+│   │   ├───images
+│   │   │       stars-bg.svg
+│   │   │
+│   │   └───js
+│   │           form.js
+│   │
+│   └───templates
+│       │   base.html
+│       │   home.html
+│       │   report.html
+│       │
+│       └───partials
+│               footer.html
+│               navbar.html
+│
+└───env
+        service-account.json
+
 ```
 
 ## Setup Instructions
 
 1. **Clone the repository:**
+
    ```
    git clone https://github.com/yourusername/my-fastapi-web-app.git
    cd my-fastapi-web-app
    ```
 
 2. **Create a virtual environment:**
+
    ```
    python -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
